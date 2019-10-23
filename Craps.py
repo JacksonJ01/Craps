@@ -8,12 +8,11 @@ bets = []
 
 def bank_roll():
     print("How much money do you wish to start with?")
-    start = int(input(">>>"))
-    amounts.append(start)
+    amounts.append(int(input(">>>")))
 
 
 def roll_dice():
-    rng = int(randint(1, 6) + randint(1, 6))
+    rng = randint(1, 6) + randint(1, 6)
     return rng
 
 
@@ -56,9 +55,30 @@ def info1():
 
 
 def game():
+    while amounts[0] <= 0:
+        print("\nWhoops, my bad.")
+        print("Looks like you're all out of cash.")
+        print("You'll have to restart to play more games.")
+        print("Do you want to play again?")
+        play_again = input(">>>").title()
+        if play_again == "Yes" or play_again == "Y":
+            print("Okay then")
+            bank_roll()
+            game()
+
+        elif play_again == "No" or play_again == "N":
+            print("Okay, see you later")
+            exit()
+
     print(f"How much money, of your ${amounts[0]}, do you want to bet?")
     wager = int(input(">>>"))
     bets.append(wager)
+    while bets[0] <= 0 or bets[0] > amounts[0]:
+        print("Hey! That's not allowed")
+        print("Either you're betting too little, or too much.")
+        print("No values below zero and no values above your bankroll!")
+        game()
+
     print("Your value has been entered!")
     print("Time to have your first roll.")
     r1 = roll_dice()
