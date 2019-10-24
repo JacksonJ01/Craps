@@ -8,7 +8,7 @@ bets = []
 
 def bank_roll():
     print("How much money do you wish to start with?")
-    amounts.append(int(input(">>>")))
+    amounts.insert(0, int(input(">>>")))
 
 
 def roll_dice():
@@ -72,7 +72,7 @@ def game():
 
     print(f"How much money, of your ${amounts[0]}, do you want to bet?")
     wager = int(input(">>>"))
-    bets.append(wager)
+    bets.insert(0, wager)
     while bets[0] <= 0 or bets[0] > amounts[0]:
         print("Hey! That's not allowed")
         print("Either you're betting too little, or too much.")
